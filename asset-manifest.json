@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/splendorTS/static/css/main.0a82831d.chunk.css",
-    "main.js": "/splendorTS/static/js/main.46d10923.chunk.js",
-    "main.js.map": "/splendorTS/static/js/main.46d10923.chunk.js.map",
+    "main.js": "/splendorTS/static/js/main.d6c27a85.chunk.js",
+    "main.js.map": "/splendorTS/static/js/main.d6c27a85.chunk.js.map",
     "runtime-main.js": "/splendorTS/static/js/runtime-main.90b4d3ac.js",
     "runtime-main.js.map": "/splendorTS/static/js/runtime-main.90b4d3ac.js.map",
     "static/js/2.3a436286.chunk.js": "/splendorTS/static/js/2.3a436286.chunk.js",
@@ -24,6 +24,6 @@
     "static/js/runtime-main.90b4d3ac.js",
     "static/js/2.3a436286.chunk.js",
     "static/css/main.0a82831d.chunk.css",
-    "static/js/main.46d10923.chunk.js"
+    "static/js/main.d6c27a85.chunk.js"
   ]
 }
