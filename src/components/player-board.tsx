@@ -116,12 +116,14 @@ const PlayerBoard = (player: IPlayer) => {
               <div style={{ fontSize: "1.5em", textAlign: "center" }}>
                 {player.cards && playerCardQty(token)}
               </div>
-              Victory Points:
-              Nobles:
+              
             </CardCountDiv>
           );
         })}
+        
       </CardCountContainer>
+      <div>VIctory points:</div>
+        <div>nobles</div>
     </PlayerDiv>
   );
 };
