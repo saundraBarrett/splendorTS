@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/splendorTS/static/css/main.0a82831d.chunk.css",
+    "main.js": "/splendorTS/static/js/main.80b272fb.chunk.js",
+    "main.js.map": "/splendorTS/static/js/main.80b272fb.chunk.js.map",
+    "runtime-main.js": "/splendorTS/static/js/runtime-main.90b4d3ac.js",
+    "runtime-main.js.map": "/splendorTS/static/js/runtime-main.90b4d3ac.js.map",
+    "static/js/2.3a436286.chunk.js": "/splendorTS/static/js/2.3a436286.chunk.js",
+    "static/js/2.3a436286.chunk.js.map": "/splendorTS/static/js/2.3a436286.chunk.js.map",
+    "static/js/3.410159d0.chunk.js": "/splendorTS/static/js/3.410159d0.chunk.js",
+    "static/js/3.410159d0.chunk.js.map": "/splendorTS/static/js/3.410159d0.chunk.js.map",
+    "index.html": "/splendorTS/index.html",
+    "static/css/main.0a82831d.chunk.css.map": "/splendorTS/static/css/main.0a82831d.chunk.css.map",
+    "static/js/2.3a436286.chunk.js.LICENSE.txt": "/splendorTS/static/js/2.3a436286.chunk.js.LICENSE.txt",
+    "static/media/card-backgrounds.0a3466ba.png": "/splendorTS/static/media/card-backgrounds.0a3466ba.png",
+    "static/media/diamond.f68b3adf.png": "/splendorTS/static/media/diamond.f68b3adf.png",
+    "static/media/emerald.84aea5eb.png": "/splendorTS/static/media/emerald.84aea5eb.png",
+    "static/media/gold.6237158e.png": "/splendorTS/static/media/gold.6237158e.png",
+    "static/media/onyx.1a6421b0.png": "/splendorTS/static/media/onyx.1a6421b0.png",
+    "static/media/ruby.1ccb5125.png": "/splendorTS/static/media/ruby.1ccb5125.png",
+    "static/media/sapphire.5361b8d5.png": "/splendorTS/static/media/sapphire.5361b8d5.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.90b4d3ac.js",
+    "static/js/2.3a436286.chunk.js",
+    "static/css/main.0a82831d.chunk.css",
+    "static/js/main.80b272fb.chunk.js"
+  ]
+}
