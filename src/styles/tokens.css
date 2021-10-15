@@ -1,0 +1,36 @@
+:root {
+  --RUBY: 233,67,54;
+  --SAPPHIRE: 0,104,175;
+  --EMERALD: 14,144,70;
+  --DIAMOND: 255,255,255;
+  --GOLD: 255,239,1;
+  --ONYX: 0,0,0;
+  --PLAYER-BOARD-CARD-OPACITY: 0.5;
+  --TOKEN-BACKGROUND: linear-gradient(rgb(243, 208, 160), rgb(204, 164, 133));
+}
+
+.ONYX {
+  background: rgb(var(--ONYX));
+  color: white;
+}
+.RUBY {
+  background: rgb(var(--RUBY));
+  color: white;
+}
+/* Green */
+.SAPPHIRE {
+  background: rgb(var(--SAPPHIRE));
+  color: white;
+}
+.EMERALD {
+  background: rgb(var(--EMERALD));
+  color: white;
+}
+.DIAMOND {
+  background: rgb(var(--DIAMOND));
+  color: black;
+}
+.GOLD {
+  background: rgb(var(--GOLD));
+  color: white;
+}

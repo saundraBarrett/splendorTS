@@ -1,0 +1,8 @@
+.light-theme {
+    --primary-color: #007bff;
+    --disabled-color: #6c757d;
+ }
+ .dark-theme {
+    --primary-color: #000000;
+    --disabled-color: #4a4a4b;
+ }
