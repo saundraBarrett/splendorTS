@@ -24,6 +24,9 @@ const GameBoardContainerDiv = styled.div`
   grid-template-rows: 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 0px;
+  @media (min-width: 1200px) { 
+    grid-template-columns: 1fr 6fr repeat(2, 1fr);
+  }
 `;
 
 const GamePage = () => {
@@ -101,6 +104,17 @@ const GamePage = () => {
     /* save to firebase DB */
     saveToDB(copy);
   };
+
+  const getActivePlayerName = () => {
+    if (!game) {
+      return;
+    }
+    let activePlayer = _.find(game.players, function (o) {
+      return o.uuid === game.turn;
+    });
+
+    return activePlayer?.name
+  }
 
   const saveCard = (card: number) => {
     if (!game) {
@@ -222,7 +236,7 @@ const GamePage = () => {
 
   return (
     <main>
-      <h1>{game.turn === playerUUID && "Your Turn"}</h1>
+      <h1>{game.turn === playerUUID ? "Your Turn" :  `${getActivePlayerName()}'s Turn`}</h1>
       <GameBoardContainerDiv>
         <div>
           <PlayerBoards {...game.players} />

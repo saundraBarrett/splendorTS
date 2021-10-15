@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { cards } from "../constants/cards";
 import { tokenSet } from "../helpers";
 import { firebase } from "../initFirebase";
+import nobles from "../constants/nobles";
 
 const db = firebase.database();
 
@@ -20,7 +21,6 @@ const NewGamePage = () => {
     .map("id")
     .shuffle()
     .value();
-  console.log(level1Cards);
 
   const level2Cards = _(cards)
     .filter((c) => c.level === 2)
@@ -33,11 +33,18 @@ const NewGamePage = () => {
     .map("id")
     .shuffle()
     .value();
+  
+    const boardNobles = _(nobles)
+    .map("id")
+    .shuffle()
+    .splice(0, 4)
+    .value();
 
   const [player] = useState({
     name: playerName,
     tokens: playerTokens,
     cards: null,
+    nobles: null,
     victoryPoints: 0,
     uuid: playerUUID,
   });
@@ -54,6 +61,7 @@ const NewGamePage = () => {
       first: 0,
       cardBank: [level3Cards, level2Cards, level1Cards],
       tokenBank: boardTokens,
+      boardNobles: boardNobles
     });
     localStorage.setItem(`${newGameRef.key}`, playerUUID);
     history.push({

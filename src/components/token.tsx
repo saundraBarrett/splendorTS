@@ -5,6 +5,7 @@ import { Gems } from '../constants/gems';
 
 type TokenDivProps = {
     gem?: string;
+    qty: number;
     disabled: boolean;
 }
 
@@ -26,6 +27,14 @@ const TokenDiv = styled.div<TokenDivProps>`
       border-width: 10px;
       border-style: solid;
       margin-bottom: .25em;
+      opacity: ${(props: TokenDivProps) => {
+        if (props.qty < 1) {
+          return "0.5";
+        }
+        else {
+            return "1.0"
+        }
+      }};
       pointer-events: ${(props: TokenDivProps) => {
         if (props.disabled) {
           return "none";
@@ -60,9 +69,8 @@ interface TokenProps {
 }
 
 const Token: React.FC<TokenProps> = (props) => {
-    console.log(props)
     return (        
-        <TokenDiv gem={props.token.gem} disabled={props.disabled} onClick={() => props.onClick(props.token.gem)}>{props.token.qty}</TokenDiv>
+        <TokenDiv gem={props.token.gem} disabled={props.disabled} qty={props.token.qty} onClick={() => props.onClick(props.token.gem)}>{props.token.qty}</TokenDiv>
     )
 }
 

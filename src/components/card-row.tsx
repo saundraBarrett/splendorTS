@@ -35,7 +35,6 @@ const CardRow: React.FC<CardRowProps> = (props) => {
             return g.gem === value.gem;
         })
         let playerCardCount = countOccurrences(playerCards ? playerCards : [], value.gem)
-        console.log(playerCardCount)
         if (playerGem.qty >= value.qty || playerCardCount >= value.qty ) {
             answer.push(true)
         }

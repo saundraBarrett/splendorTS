@@ -21,8 +21,9 @@ const GameSetupPage = () => {
   const [player] = useState({
     name: playerName,
     tokens: playerTokens,
-    cards: [2],
+    cards: [],
     victoryPoints: 0,
+    nobles: [],
     uuid: playerUUID
   });
 
