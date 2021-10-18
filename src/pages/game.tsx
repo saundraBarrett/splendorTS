@@ -11,6 +11,10 @@ import PlayerBoards from "../components/player-boards";
 import BoardCards from "../components/boards-cards";
 import { cards } from "../constants/cards";
 import { countOccurrences } from "../helpers";
+import BoardNobles from "../components/board-nobles";
+import nobles from "../constants/nobles";
+import { Gems } from "../constants/gems";
+import { IPlayer } from "../types/player";
 
 const db = firebase.database();
 
@@ -20,12 +24,13 @@ type GameProps = {
 
 const GameBoardContainerDiv = styled.div`
   display: grid;
+  padding: 0 2em;
   grid-template-columns: 2fr 6fr repeat(2, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 0px;
   @media (min-width: 1200px) { 
-    grid-template-columns: 1fr 6fr repeat(2, 1fr);
+    grid-template-columns: 5fr repeat(2, 1fr) 2fr;
   }
 `;
 
@@ -56,6 +61,12 @@ const GamePage = () => {
       ref.off();
     };
   }, [id]);
+
+  const evaluateVictorPoints = (activePlayer: IPlayer) => {
+    if (activePlayer.victoryPoints >= 10) {
+      alert(`${activePlayer.name} Wins`)
+    }
+  }
 
   const updateTokenCount = (tokenIndex: number) => {
     if (!game) {
@@ -184,8 +195,13 @@ const GamePage = () => {
         else {
           copy.players[activePlayerIndex].tokens[playerTokenIndex].qty= copy.players[activePlayerIndex].tokens[playerTokenIndex].qty - token.qty;
           copy.tokenBank[tokenBankIndex].qty = copy.tokenBank[tokenBankIndex].qty + (token.qty);
-
         }
+
+        console.log(thisCard)
+        console.log(copy.players[activePlayerIndex].victoryPoints)
+
+        /* add victory points to player */
+        copy.players[activePlayerIndex].victoryPoints = copy.players[activePlayerIndex].victoryPoints + thisCard.victoryPoints;
       })
     }
     
@@ -200,17 +216,44 @@ const GamePage = () => {
       copy.players[activePlayerIndex].cards = [cardGem]
     }
 
-    copy.turn = setNextTurn(activePlayerIndex, copy.players);
+    /* check if player gets noble */
+    _.forEach(copy.boardNobles, function(boardNoble, index) {
+      let noble = _.find(nobles, function(n) {
+        return n.id === boardNoble
+      })
+      let canAfford: any[] = [];
+      _.forEach(noble?.cost, function(cost) {
+        let playerCardCount = countOccurrences(copy.players[activePlayerIndex].cards, cost.gem)
+        if (playerCardCount >= cost.qty) {
+          canAfford.push(true)
+        }
+      })
+      if (canAfford.length === noble?.cost.length) {
+        copy.players[activePlayerIndex].victoryPoints = copy.players[activePlayerIndex].victoryPoints + noble.victoryPoints;
+        if (copy.players[activePlayerIndex].nobles) {
+          copy.players[activePlayerIndex].nobles = [
+            ...copy.players[activePlayerIndex].nobles,
+            noble.id,
+          ];
+        }
+        else {
+          copy.players[activePlayerIndex].nobles = [noble.id]
+        }
+        copy.boardNobles.splice(index, 1)
+      }
+    })
 
+    copy.turn = setNextTurn(activePlayerIndex, copy.players);
+    
     saveToDB(copy);
+    evaluateVictorPoints(game.players[activePlayerIndex])
+    
   };
 
   const getPlayerBank = () => {
     if (!game) {
       return;
     }
-    // iterate through tokens and cards to get total amounts
-    // {gem: 'Name', tokens: number, card: number}
     let activePlayer = _.find(game.players, function (o) {
       return o.uuid === game.turn;
     });
@@ -238,10 +281,7 @@ const GamePage = () => {
     <main>
       <h1>{game.turn === playerUUID ? "Your Turn" :  `${getActivePlayerName()}'s Turn`}</h1>
       <GameBoardContainerDiv>
-        <div>
-          <PlayerBoards {...game.players} />
-        </div>
-        <div>
+          
           <BoardCards
             cardBank={game.cardBank}
             saveCard={saveCard}
@@ -249,17 +289,14 @@ const GamePage = () => {
             playerCards={getPlayerCards()}
             disabled={game.turn !== playerUUID}
           />
-        </div>
-        <div>
-          {" "}
           <TokenBank
             tokenBank={game.tokenBank}
             saveTokens={saveTokens}
             disabled={game.turn !== playerUUID}
             updateTokenCount={updateTokenCount}
           />
-        </div>
-        <div> nobles</div>
+        <BoardNobles boardNobles={game.boardNobles}/>
+        <PlayerBoards {...game.players} />
       </GameBoardContainerDiv>
 
       <button

@@ -13,9 +13,9 @@ function App() {
   console.log(process.env.PUBLIC_URL)
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      <Router basename={'/splendorTS'}>
+      <Router basename={process.env.PUBLIC_URL}>
         <Switch>
-          <Route path="/game/:id/play">
+          <Route path='/game/:id/play'>
             <GamePage />
           </Route>
           <Route path="/game/:id">

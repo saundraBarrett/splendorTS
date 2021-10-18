@@ -43,7 +43,7 @@ const NewGamePage = () => {
   const [player] = useState({
     name: playerName,
     tokens: playerTokens,
-    cards: null,
+    cards: [],
     nobles: null,
     victoryPoints: 0,
     uuid: playerUUID,

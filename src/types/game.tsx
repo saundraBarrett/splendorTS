@@ -8,6 +8,7 @@ export interface IGame {
     tokenBank: any[];
     players: Array<IPlayer>;
     cardBank: any[];
+    boardNobles: any[];
   }
 
 type IRow = [number, number, number, number];

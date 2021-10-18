@@ -5,17 +5,14 @@ import { Gems } from "../constants/gems";
 import { tokens } from "../constants/tokens";
 import { IPlayer } from "../types/player";
 import { countOccurrences } from "../helpers";
-
+import nobles from "../constants/nobles";
+import Noble from "./noble";
+import Star from "./star";
 
 const PlayerDiv = styled.div`
-  margin: 1em 0;
+  margin: 0;
   background: rgba(0, 0, 0, 0.3);
-  -webkit-border-top-right-radius: 15px;
-  -webkit-border-bottom-right-radius: 15px;
-  -moz-border-radius-topright: 15px;
-  -moz-border-radius-bottomright: 15px;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+  padding: 0.5em;
 `;
 
 const CardCountContainer = styled.div`
@@ -25,6 +22,7 @@ const CardCountContainer = styled.div`
   grid-column-gap: 7px;
   grid-row-gap: 10px;
   padding: 0.5em;
+  margin-bottom: 1em;
 `;
 
 type CardCountDivProps = {
@@ -87,7 +85,6 @@ const GemImageContainer = styled.div<CardCountDivProps>`
 `;
 
 const PlayerBoard = (player: IPlayer) => {
-
   const playerTokenQty = (token: { id: number; gem: string }) => {
     let playerGem = _.find(player.tokens, function (t) {
       return t.gem === token.gem;
@@ -105,9 +102,23 @@ const PlayerBoard = (player: IPlayer) => {
 
   return (
     <PlayerDiv>
-      <h3>{player.name}</h3>
+      <div style={{ display: "flex", alignItems: 'center' }}>
+        {player.name}
+        <div
+          style={{
+            marginLeft: "auto",
+            display: "flex",
+            alignContent: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Star content={player.victoryPoints} />
+        </div>
+      </div>
       <CardCountContainer>
-        {tokens.map((token, index) => {
+        {_.filter(tokens, function (t) {
+          return t.gem !== Gems.YELLOW;
+        }).map((token, index) => {
           return (
             <CardCountDiv gem={token.gem} key={`token_${index}_${player.uuid}`}>
               <GemImageContainer gem={token.gem}>
@@ -116,14 +127,14 @@ const PlayerBoard = (player: IPlayer) => {
               <div style={{ fontSize: "1.5em", textAlign: "center" }}>
                 {player.cards && playerCardQty(token)}
               </div>
-              
             </CardCountDiv>
           );
         })}
-        
       </CardCountContainer>
-      <div>VIctory points:</div>
-        <div>nobles</div>
+
+      {player?.nobles?.map((noble) => {
+        return <Noble compact={true} noble={noble} />;
+      })}
     </PlayerDiv>
   );
 };

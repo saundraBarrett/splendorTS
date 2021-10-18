@@ -15,7 +15,7 @@ const CardDiv = styled.div<CardDivType>`
   min-width: 100%;
   max-width: 100%;
   border-radius: 0.5em;
-  height: 18em;
+  height: var(--CARD-WIDTH);
   display: flex;
     flex-direction: column;
   background-image: url(${cardBackground});
@@ -23,6 +23,7 @@ const CardDiv = styled.div<CardDivType>`
   border-color: green;
   border-width: ${(props: CardDivType) => (props.canAfford ? "5px" : "0")};
   border-style: solid;
+  background-size: 500%;
   pointer-events: ${(props: CardDivType) => {
     if (props.disabled || !props.canAfford) {
       return "none";
@@ -61,7 +62,7 @@ type CardProps = {
 
 const Card: React.FC<CardProps> = (props) => {
   const { saveCard, card, canAfford, disabled } = props;
-  
+
   return (
     <CardDiv
       canAfford={canAfford}
@@ -72,31 +73,30 @@ const Card: React.FC<CardProps> = (props) => {
       <CardTop>
         <div
           style={{
-            textShadow: " -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black",
+            textShadow: "var(--TEXT-SHADOW)",
             color: "white",
-            fontSize: "3em",
+            fontSize: "2em",
             minHeight: "1em",
           }}
         >
-          {" "}
           {card.victoryPoints > 0 && card.victoryPoints}
         </div>
-        <div style={{ textAlign: "right", height: "4em" }}>
+        <div style={{ textAlign: "right", height: "2.5em" }}>
           <GemImage gem={card.gem} />
         </div>
       </CardTop>
       <CardBottom>
-        {card.cost.map((cost) => {
+        {card.cost.map((cost, index) => {
           return (
-            <div
+            <div key={`${cost.gem}_${index}`}
               className={`${cost.gem}`}
               style={{
                 borderRadius: "50%",
                 height: "1.25em",
                 width: "1.25em",
                 textAlign: "center",
-                fontSize: "2em",
-                border: "solid 1px black",
+                fontSize: "1.5em",
+                border: "solid 1px white",
               }}
             >
               {cost.qty}

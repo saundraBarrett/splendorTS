@@ -16,6 +16,7 @@ interface TokenBankProps {
 const TokenBankDiv = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
 `
 
 const TokenBank: React.FC<TokenBankProps> = (props) => {
