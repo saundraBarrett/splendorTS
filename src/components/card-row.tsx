@@ -52,26 +52,33 @@ type CardRowProps = {
   disabled: boolean;
   count: number;
   index: number;
+  turnStarted: boolean;
 };
 
 
 
 const CardRow: React.FC<CardRowProps> = (props) => {
-  const { rowCards, saveCard, playerGems, disabled, playerCards, count, index } = props;
+  const { rowCards, saveCard, playerGems, disabled, playerCards, count, index, turnStarted } = props;
 
   const canAfford = (thisCard: ICard) => {
+    if (!turnStarted) {
       let answer: boolean[] = [];
-    _.forEach(thisCard.cost, function(value) {
-        /* find player gem qty */
-        let playerGem = _.find(playerGems, function (g) {
-            return g.gem === value.gem;
-        })
-        let playerCardCount = countOccurrences(playerCards ? playerCards : [], value.gem)
-        if ((playerGem.qty + playerCardCount) >= value.qty  ) {
-            answer.push(true)
-        }
-    })
-    return answer.length === thisCard.cost.length;
+      _.forEach(thisCard.cost, function(value) {
+          /* find player gem qty */
+          let playerGem = _.find(playerGems, function (g) {
+              return g.gem === value.gem;
+          })
+          let playerCardCount = countOccurrences(playerCards ? playerCards : [], value.gem)
+          if ((playerGem.qty + playerCardCount) >= value.qty  ) {
+              answer.push(true)
+          }
+      })
+      return answer.length === thisCard.cost.length;
+    }
+    else {
+      return false;
+    }
+      
   };
 
   /* for each card in the row, render the card */

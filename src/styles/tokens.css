@@ -9,6 +9,9 @@
   --TOKEN-BACKGROUND: linear-gradient(rgb(243, 208, 160), rgb(204, 164, 133));
   --TEXT-SHADOW: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   --CARD-WIDTH: 12em;
+  --TOKEN-SMALL: 20px;
+  --TOKEN-MEDIUM: 40px;
+  --TOKEN-LARGE: 65px;
 }
 
 .ONYX {

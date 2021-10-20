@@ -67,7 +67,7 @@ const GameSetupPage = () => {
           onChange={(e) => setPlayerName(e.target.value)}
         />
        
-        <button type="submit">Lets Play</button>
+        <button type="submit">Join Game</button>
       </form>
       
     </div>

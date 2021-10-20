@@ -2,13 +2,6 @@ import { Gems } from './gems';
 
 const nobles = [
     {
-        id: 11,
-        victoryPoints: 3,
-        backgroundPosition: '75% 95%',
-        imageCode: "CAT_MEDICI",
-        cost: [{ gem: Gems.GREEN, qty: 2 }]
-    },
-    {
         id: 1,
         victoryPoints: 3,
         backgroundPosition: '75% 95%',

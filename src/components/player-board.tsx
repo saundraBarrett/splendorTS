@@ -13,6 +13,7 @@ const PlayerDiv = styled.div`
   margin: 0;
   background: rgba(0, 0, 0, 0.3);
   padding: 0.5em;
+  margin-bottom: 1em;
 `;
 
 const CardCountContainer = styled.div`

@@ -12,9 +12,10 @@ type BoardNobleProps = {
 const BoardNobles: React.FC<BoardNobleProps> = (props) => {
 
     const {boardNobles} = props;
+
     return (
         <BoardNobleContainer>
-           {boardNobles.map((noble) => {
+           {boardNobles && boardNobles.map((noble) => {
                return <Noble key={`noble_${noble}`}noble={noble}/>
            })}
         </BoardNobleContainer>

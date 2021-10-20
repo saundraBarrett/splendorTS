@@ -16,10 +16,12 @@ type BoardCardsProps = {
   saveCard(arg: number): void;
   disabled: boolean;
   playerCards?: any[];
+  turnStarted: boolean;
 };
 
 const BoardCards: React.FC<BoardCardsProps> = (props) => {
-const {cardBank, saveCard, playerGems, disabled, playerCards } = props;
+const {cardBank, saveCard, playerGems, disabled, playerCards, turnStarted } = props;
+console.log(turnStarted)
   return (
     <BoardCardContainerDiv>
       {cardBank.map((row, index) => {
@@ -33,6 +35,7 @@ const {cardBank, saveCard, playerGems, disabled, playerCards } = props;
             playerGems={playerGems}
             playerCards={playerCards}
             disabled={disabled}
+            turnStarted={turnStarted}
           />
         );
       })}
